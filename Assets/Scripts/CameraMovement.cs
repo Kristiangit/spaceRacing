@@ -21,10 +21,16 @@ public class CameraMovement : MonoBehaviour
         // If the target is active in the scene, set the x camera position to target.
     if (Target != null)
     {
-        tempVec3.x = Target.position.x;
-        tempVec3.y = Target.position.y + 3;
-        tempVec3.z = Target.position.z - 5;
+        tempVec3 = Target.position;
         this.transform.position = tempVec3;
+
+
+        float LookY = Input.GetAxis("Mouse X");
+        float LookX = Input.GetAxis("Mouse Y");
+
+
+        this.transform.Rotate((LookX)*2 , (LookY)*2, 0, Space.World);
+        Target.transform.Rotate((LookX)*2 , (LookY)*2, 0, Space.World);
     }
     }
 }
