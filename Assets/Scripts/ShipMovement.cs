@@ -20,8 +20,8 @@ public class ShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveX = (Input.GetAxis("Horizontal"))/20;
-        MoveZ = (Input.GetAxis("Vertical"))/20;
+        MoveX = (Input.GetAxis("Horizontal"));
+        MoveZ = (Input.GetAxis("Vertical"));
 
         // if (second >= 1.0f)
         // {
@@ -32,20 +32,23 @@ public class ShipMovement : MonoBehaviour
         // second += Time.deltaTime;
             
 
-
-
-        rb.velocity = new Vector3((speed * MoveX) + rb.velocity.x, rb.velocity.y, (speed * MoveZ) + rb.velocity.z);
-
+        // rb.velocity = new Vector3((speed * MoveX) + rb.velocity.x, rb.velocity.y, (speed * MoveZ) + rb.velocity.z);
+        
+        rb.AddRelativeForce((speed * MoveX), 0, (speed * MoveZ));
 
         if(Input.GetKey(KeyCode.Space)) // Up
             {
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 0.03f, rb.velocity.z);
+                // rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 0.03f, rb.velocity.z);
+                
+                rb.AddRelativeForce(0, Vspeed, 0, ForceMode.Force);
             }   
 
 
         if(Input.GetKey(KeyCode.LeftControl)) // Down
             {
-                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y - 0.03f, rb.velocity.z);
+                // rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y - 0.03f, rb.velocity.z);
+
+                rb.AddRelativeForce(0, -Vspeed, 0, ForceMode.Force);
 
             }   
 

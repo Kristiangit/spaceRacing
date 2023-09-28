@@ -7,7 +7,7 @@ public class CameraMovement : MonoBehaviour
 
     public Transform Target; // Drag the object that will be followed in the inspector.
     public Transform Camera; // Drag the camera object in the inspector.
-    Vector3 tempVec3 = new Vector3(); // Temporary vector 3.
+    private Vector3 tempVec3 = new Vector3(); // Temporary vector 3.
 
     // Start is called before the first frame update
     void Start()
@@ -22,15 +22,18 @@ public class CameraMovement : MonoBehaviour
     if (Target != null)
     {
         tempVec3 = Target.position;
-        this.transform.position = tempVec3;
+        Camera.transform.position = tempVec3;
 
 
         float LookY = Input.GetAxis("Mouse X");
         float LookX = Input.GetAxis("Mouse Y");
 
 
-        this.transform.Rotate((LookX)*2 , (LookY)*2, 0, Space.World);
-        Target.transform.Rotate((LookX)*2 , (LookY)*2, 0, Space.World);
+        // Camera.transform.rotation = Quaternion.Euler(LookX, LookY*-1, 0);
+
+        Camera.transform.Rotate(LookX*-1, LookY, 0, Space.World);
+        
+        Target.transform.rotation = Camera.transform.rotation;
     }
     }
 }

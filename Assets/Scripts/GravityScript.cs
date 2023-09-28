@@ -9,19 +9,17 @@ public class GravityScript : MonoBehaviour
     public GameObject attractedObject;
 
     private float second = 0;
-    public float distance;
+    public float distance = 0;
 
     public float g_constant = 9f;
     public float mass_p = 50f;
     public float mass_obj = 1f;
 
-    public float g_force;
+    public float g_force = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        distance = Vector3.Distance(attractedObject.transform.position, attractingBody.transform.position);
-        g_force = (g_constant * mass_p * mass_obj) / (distance*distance);
     }
 
     // Update is called once per frame
@@ -49,9 +47,9 @@ public class GravityScript : MonoBehaviour
 
         if (second >= 1.0f)
         {
-            Debug.Log(distance);
-            Debug.Log(g_force);
-            second = 0f;
+            // Debug.Log(distance);
+            // Debug.Log(g_force);
+            // second = 0f;
         }
         second += Time.deltaTime;
     }
