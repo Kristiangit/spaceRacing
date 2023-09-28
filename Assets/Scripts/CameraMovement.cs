@@ -31,7 +31,7 @@ public class CameraMovement : MonoBehaviour
 
         // Camera.transform.rotation = Quaternion.Euler(LookX, LookY*-1, 0);
 
-        Camera.transform.Rotate(LookX*-1, LookY, 0, Space.World);
+        Camera.transform.Rotate(LookX*-1, LookY, 0, Space.Self);
         
         Target.transform.rotation = Camera.transform.rotation;
     }
