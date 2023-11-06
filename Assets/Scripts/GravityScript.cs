@@ -5,17 +5,17 @@ using UnityEngine;
 public class GravityScript : MonoBehaviour
 {
 
-    public GameObject attractingBody;
-    public GameObject attractedObject;
+    [SerializeField] private GameObject attractingBody;
+    [SerializeField] private GameObject attractedObject;
 
     private float second = 0;
-    public float distance = 0;
+    [SerializeField] private float distance = 0;
 
-    public float g_constant = 9f;
-    public float mass_p = 50f;
-    public float mass_obj = 1f;
+    [SerializeField] private float g_constant = 9f;
+    [SerializeField] private float mass_p = 50f;
+    [SerializeField] private float mass_obj = 1f;
 
-    public float g_force = 0;
+    [SerializeField] private float g_force = 0;
 
     // Start is called before the first frame update
     void Start()

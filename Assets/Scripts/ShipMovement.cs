@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
 {
-    public float speed;
-    public float Vspeed;
+    [SerializeField] private float speed;
+    [SerializeField] private float Vspeed;
     private float MoveX;
     private float MoveZ;
     // private float second = 0f;
@@ -41,7 +41,7 @@ public class ShipMovement : MonoBehaviour
                 // rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 0.03f, rb.velocity.z);
                 
                 rb.AddRelativeForce(0, Vspeed, 0, ForceMode.Force);
-            }   
+            }
 
 
         if(Input.GetKey(KeyCode.LeftControl)) // Down
