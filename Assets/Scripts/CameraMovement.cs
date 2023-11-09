@@ -7,8 +7,9 @@ public class CameraMovement : MonoBehaviour
 
     public Transform Target; // Drag the object that will be followed in the inspector.
     public Transform Camera; // Drag the camera object in the inspector.
-    private Vector3 tempVec3 = new Vector3(); // Temporary vector 3.
     [SerializeField] private bool targeting;
+    private Transform activeOutline;
+    private Transform inactiveOutline;
 
     void Start()
     {
@@ -20,25 +21,44 @@ public class CameraMovement : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, transform.forward, out var _hit, Mathf.Infinity))
         {
+            activeOutline = _hit.transform.GetChild(0).GetChild(0);
+            inactiveOutline = _hit.transform.GetChild(0).GetChild(1);
+            inactiveOutline.gameObject.SetActive(true);
+
             if(Input.GetKeyDown(KeyCode.R))
             {
-                // Debug.Log("lock status:" + targeting);
                 targeting = !targeting;
                 // Debug.Log("lock status:" + targeting);
             }
-
+            activeOutline.gameObject.SetActive(false);
+        }
+        else
+        {
+            inactiveOutline.gameObject.SetActive(false);
+            activeOutline.gameObject.SetActive(false);
         }
 
         if (targeting) 
         {
+            inactiveOutline.gameObject.SetActive(false);
+            activeOutline.gameObject.SetActive(true);
+
             transform.LookAt(_hit.transform);
+
+
+            // Vector3 screenPos = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.position);
+            // Vector3 screenPos2 = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.GetComponent<Renderer>().bounds.max);
+            // float radius = (screenPos2.x - screenPos.x)/100 + 1f;
+
+            // activeOutline.transform.scale.x = radius;
+            // activeOutline.transform.scale.y = radius;
+            // activeOutline.transform.scale.z = radius;
         }
 
         // If the target is active in the scene, set the x camera position to target.
         if (Target != null)
         {
-            tempVec3 = Target.position;
-            Camera.transform.position = tempVec3;
+            Camera.transform.position = Target.position;
 
             if (!targeting)
             {
