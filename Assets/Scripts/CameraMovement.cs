@@ -23,6 +23,16 @@ public class CameraMovement : MonoBehaviour
         {
             activeOutline = _hit.transform.GetChild(0).GetChild(0);
             inactiveOutline = _hit.transform.GetChild(0).GetChild(1);
+
+            
+            Vector3 screenPos = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.position);
+            Vector3 screenPos2 = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.GetComponent<Renderer>().bounds.max);
+            float radius = (screenPos2.x - screenPos.x)*2 + 150f;
+
+
+            inactiveOutline.transform.position = screenPos;
+
+            inactiveOutline.GetComponent<RectTransform>().sizeDelta = new Vector2(radius, radius);
             inactiveOutline.gameObject.SetActive(true);
 
             if(Input.GetKeyDown(KeyCode.R))
@@ -31,6 +41,19 @@ public class CameraMovement : MonoBehaviour
                 // Debug.Log("lock status:" + targeting);
             }
             activeOutline.gameObject.SetActive(false);
+
+            if (targeting) 
+            {
+                inactiveOutline.gameObject.SetActive(false);
+                activeOutline.gameObject.SetActive(true);
+
+                transform.LookAt(_hit.transform);
+
+                activeOutline.transform.position = screenPos;
+
+                activeOutline.GetComponent<RectTransform>().sizeDelta = new Vector2(radius, radius);
+
+            }
         }
         else
         {
@@ -38,22 +61,6 @@ public class CameraMovement : MonoBehaviour
             activeOutline.gameObject.SetActive(false);
         }
 
-        if (targeting) 
-        {
-            inactiveOutline.gameObject.SetActive(false);
-            activeOutline.gameObject.SetActive(true);
-
-            transform.LookAt(_hit.transform);
-
-
-            // Vector3 screenPos = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.position);
-            // Vector3 screenPos2 = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.GetComponent<Renderer>().bounds.max);
-            // float radius = (screenPos2.x - screenPos.x)/100 + 1f;
-
-            // activeOutline.transform.scale.x = radius;
-            // activeOutline.transform.scale.y = radius;
-            // activeOutline.transform.scale.z = radius;
-        }
 
         // If the target is active in the scene, set the x camera position to target.
         if (Target != null)

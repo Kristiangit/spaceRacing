@@ -503,9 +503,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1234429703603295654, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2452674460880728771, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
       propertyPath: m_Name
       value: RightPlanet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752026904639260456, guid: 8ea3e8801f059ea4eb615423089f326c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
