@@ -21,8 +21,14 @@ public class CameraMovement : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, transform.forward, out var _hit, Mathf.Infinity))
         {
+            if (inactiveOutline) {
+                inactiveOutline.gameObject.SetActive(false);
+                activeOutline.gameObject.SetActive(false);
+            }
+
             activeOutline = _hit.transform.GetChild(0).GetChild(0);
             inactiveOutline = _hit.transform.GetChild(0).GetChild(1);
+            inactiveOutline.gameObject.SetActive(true);
 
             
             Vector3 screenPos = Camera.GetComponent<Camera>().WorldToScreenPoint(_hit.transform.position);
@@ -55,7 +61,7 @@ public class CameraMovement : MonoBehaviour
 
             }
         }
-        else
+        else if (inactiveOutline)
         {
             inactiveOutline.gameObject.SetActive(false);
             activeOutline.gameObject.SetActive(false);

@@ -22,6 +22,8 @@ public class CameraTargeting : MonoBehaviour
             }
 
         }
+        else 
+        {}
 
         if (targeting) 
         {
