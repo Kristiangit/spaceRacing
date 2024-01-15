@@ -41,6 +41,10 @@ public class CameraMovement : MonoBehaviour
             inactiveOutline.GetComponent<RectTransform>().sizeDelta = new Vector2(radius, radius);
             inactiveOutline.gameObject.SetActive(true);
 
+            activeOutline.transform.position = screenPos;
+            activeOutline.GetComponent<RectTransform>().sizeDelta = new Vector2(radius, radius);
+
+
             if(Input.GetKeyDown(KeyCode.R))
             {
                 targeting = !targeting;
@@ -48,18 +52,6 @@ public class CameraMovement : MonoBehaviour
             }
             activeOutline.gameObject.SetActive(false);
 
-            if (targeting) 
-            {
-                inactiveOutline.gameObject.SetActive(false);
-                activeOutline.gameObject.SetActive(true);
-
-                transform.LookAt(_hit.transform);
-
-                activeOutline.transform.position = screenPos;
-
-                activeOutline.GetComponent<RectTransform>().sizeDelta = new Vector2(radius, radius);
-
-            }
         }
         else if (inactiveOutline)
         {
@@ -67,6 +59,17 @@ public class CameraMovement : MonoBehaviour
             activeOutline.gameObject.SetActive(false);
         }
 
+        if (targeting) 
+        {
+            inactiveOutline.gameObject.SetActive(false);
+            activeOutline.gameObject.SetActive(true);
+
+            Vector3 lookDirection = Target.position - Camera.position;
+            lookDirection.Normalize();
+
+            Camera.rotation = Quaternion.Lerp(Camera.rotation, Quaternion.LookRotation(lookDirection), 0.1f * Time.deltaTime);
+
+        }
 
         // If the target is active in the scene, set the x camera position to target.
         if (Target != null)
