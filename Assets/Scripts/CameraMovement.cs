@@ -8,18 +8,20 @@ public class CameraMovement : MonoBehaviour
     public Transform Target; // Drag the object that will be followed in the inspector.
     public Transform Camera; // Drag the camera object in the inspector.
     [SerializeField] private bool targeting;
+    [SerializeField] private bool outlines;
     private Transform activeOutline;
     private Transform inactiveOutline;
 
     void Start()
     {
+        outlines = false;
         targeting = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position, transform.forward, out var _hit, Mathf.Infinity))
+        if(Physics.Raycast(transform.position, transform.forward, out var _hit, Mathf.Infinity) && outlines)
         {
             if (inactiveOutline) {
                 inactiveOutline.gameObject.SetActive(false);
